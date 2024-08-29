@@ -52,6 +52,11 @@
       .navPart {
         height: 120%;
       }
+      .banner {
+        background-image: url("{% static 'post/img/skyCloud.JPG' %}");
+        background-size: cover;
+
+      }
       .contentPart {
         .seedCard {
           .title {
@@ -76,65 +81,29 @@
 </head>
 
 <body class="bg-light" style="height: 100%;">
+
+  <div class="heading bg-light h4 banner text-center d-flex justify-content-around align-items-center " >
+    <div class="left ">
+      {% block href %} {% endblock %}
+    </div>
+    <div class="mid">
+      <p class="mx-auto  py-4  fs-1 fw-bolder text-white" > OLIVER'S LOGS </p>
+    </div>
+    <div class="right d-grid gap-2 col-1 mx-1 bg-white rounded border mx-3">
+
+        <button class="btn btn-outline-primary ms-2" >sign in</button>
+        <button class="btn btn-outline-primary ms-2" >new post</button>
+
+    </div>
+    
+
+  </div>
+
   <div class="container-fluid row mx-0 bg-light" style="font-family: DM Sans; font-weight:900;">
 
-    <div class="navPart col-lg-2 col-md-2 col-sm-2 d-none d-sm-block bg-light border-end">
-      <div class="d-flex flex-column sticky-top">
-        <div class="logo justify-content-center align-content-center mb-5">
-          <a class="text-body navbar-brand d-none d-md-block text-center" href="{% url 'home' %} "><strong>projTree</strong></a>
-        </div>
-        <div class="navs row g-2 justify-content-center mx-1">
 
-          <a href="{% url 'seed_list' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3" >
-            <img class="me-1" src="{% static 'seed/icons/seed_list_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">Seeds</p>
-          </a>
-
-          <!-- <a href="{% url 'posts' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
-            <img class="me-1" src="{% static 'seed/icons/posts_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">Posts</p>
-          </a> -->
-
-          {% if user.is_authenticated %}
-
-          <a href="{% url 'profile' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
-            <img class="me-1" src="{% static 'seed/icons/profile_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">Profile</p>
-          </a>
-
-          <a href="{% url 'confirm_logout' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
-            <img class="me-1" src="{% static 'seed/icons/logout_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">Logout</p>
-          </a>
-          
-          {% else %}
-
-          <a href="{% url 'login' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
-            <img class="me-1" src="{% static 'seed/icons/login_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">Login</p>
-          </a>
-
-          <a href="{% url 'register' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
-            <img class="me-1" src="{% static 'seed/icons/register_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">Register</p>
-          </a>
-          {% endif %}
-
-          <a href="{% url 'about' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
-            <img class="me-1" src="{% static 'seed/icons/about_icon.svg' %}" alt="alt">
-            <p class="d-none d-md-block my-auto">About</p>
-          </a>
-          
-        </div>
-      </div>
-    </div>  
-
-    <div class="contentPart col-lg-8 col-md-10 col-sm-10  bg-light" style="padding-top: 0%;">
-      <div class="heading border-bottom sticky-top text-center bg-light h4 py-2" >
-        {% block href %} {% endblock %}
-        
-        <p class="my-1"> {% block head %} {% endblock %} </p>
-      </div>
+    <div class="contentPart col  bg-light" style="padding-top: 0%;">
+      
       <div class="px-1">
 
         {% if messages %}
@@ -155,23 +124,7 @@
     </div>
 
 
-    <div class="infoPart col-lg-2 col-md-2 d-none d-lg-block border-start">
-      <div class="sticky-top rounded border mt-3 p-2">
 
-        {% if user.is_authenticated %}
-        <div class="text-center">
-          <p class="h6">What up {{user.username}}! </p>
-        </div>
-        {% endif %}
-
-        <div class="navs row justify-content-center m-1">
-          {% block info %}
-          {% endblock %}
-        </div>
-        
-      </div>
-    
-    </div>
 
     <div class="d-sm-none bg-light" style="height: 4rem;">
     </div>
@@ -180,15 +133,10 @@
   <div class="bottomNavPart d-sm-none border bg-white position-fixed bottom-0" style="width: 100%;">
     <div class="d-flex">
       <ul class="navbar-nav d-flex flex-row mx-auto">
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'seed_list' %} ">
-            <img src="{% static 'seed/icons/seed_list_icon.svg' %}" alt="alt">
-          </a>
-        </li>
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'posts' %} ">
-            <img src="{% static 'seed/icons/posts_icon.svg' %}" alt="alt">
+            <img src="{% static 'post/icons/posts_icon.svg' %}" alt="alt">
           </a>
         </li>
 
@@ -196,13 +144,13 @@
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'profile' %} ">
-            <img src="{% static 'seed/icons/profile_icon.svg' %}" alt="alt">
+            <img src="{% static 'post/icons/profile_icon.svg' %}" alt="alt">
           </a>
         </li>
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'logout' %} ">
-            <img src="{% static 'seed/icons/logout_icon.svg' %}" alt="alt">
+            <img src="{% static 'post/icons/logout_icon.svg' %}" alt="alt">
           </a>
         </li>
     
@@ -210,20 +158,20 @@
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'register' %} ">
-            <img src="{% static 'seed/icons/register_icon.svg' %}" alt="alt">
+            <img src="{% static 'post/icons/register_icon.svg' %}" alt="alt">
           </a>
         </li>
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'login' %} ">
-            <img src="{% static 'seed/icons/login_icon.svg' %}" alt="alt">
+            <img src="{% static 'post/icons/login_icon.svg' %}" alt="alt">
           </a>
         </li>
         {% endif %}
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'about' %} ">
-            <img src="{% static 'seed/icons/about_icon.svg' %}" alt="alt">
+            <img src="{% static 'post/icons/about_icon.svg' %}" alt="alt">
           </a>
         </li>
 
