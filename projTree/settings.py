@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'post.apps.PostConfig',
-    'seed.apps.SeedConfig',
-    'step.apps.StepConfig',
     'general.apps.GeneralConfig',
     'users.apps.UsersConfig',
     'crispy_forms',
@@ -141,5 +139,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
-LOGIN_REDIRECT_URL = 'seed_list'
+LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'  #direct user to 'login' when user tries to enter a login-required page 

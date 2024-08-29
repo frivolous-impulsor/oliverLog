@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 
+
 # Create your views here.
 class PostListView(ListView): #temp_name = post_list.html
     model = Post

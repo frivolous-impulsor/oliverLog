@@ -19,7 +19,7 @@ Posts
     {% for post in posts %}
     <div class="rounded border p-2 mb-2 shadow-sm bg-white">
         <a href="{%url 'post_detail' post.id%}">{{ post.title }}</a>
-        <a class="text-muted" href="{%url 'user_posts' post.author.username%}">-{{ post.author }}</a>
+        <p>-{{ post.date_posted }}</p>
         <p class="border-top" >{{post.content|truncatechars:100}} </p>
     </div>
 
