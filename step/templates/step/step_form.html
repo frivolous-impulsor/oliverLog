@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block href %}
+<a class="position-absolute start-0" href="{% url 'step_list' view.kwargs.seed_id %} "> <img src="{% static 'seed/icons/arrow_back_icon.svg' %}"></a>
+{% endblock %}
+
+{% block head %}
+Add Step
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <form method="POST" enctype="multipart/form-data"> 
+            {%csrf_token%}
+            <fieldset class="form-group">
+                {{form|crispy}}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-primary" type="submit">
+                    Confirm Step
+                </button>
+            </div>
+        </form>
+
+        <form class="my-2">
+            <small>
+                <a class="btn btn-outline-secondary" href="{% url 'step_list' view.kwargs.seed_id %}" class="btn">Cancel</a>
+            </small>
+        </form>
+    </div>
+
+{% endblock %}

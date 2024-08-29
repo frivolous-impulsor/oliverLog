@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block href %}
+<a class="position-absolute start-0" href="{% url 'posts' %} "> <img src="{% static 'seed/icons/arrow_back_icon.svg' %}"></a>
+{% endblock %}
+
+{% block head %}
+Post
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="container">
+        <div class="border rounded shadow-sm p-4 bg-white">
+            <div class="head d-flex border-bottom">
+                <p class="h4">{{post.title}}</p>
+                <p class="ms-auto h5">
+                    <a href="">-{{post.author}}</a>
+                </p>
+            </div>
+            <div class="content">{{post.content}}</div>
+        </div>
+        
+       
+       
+    </div>
+
+
+{% endblock %}
+
+{% block info %}
+<div class="container my-1 row d-flex">
+    <div class="d-grid gap-2">
+        {% if post.author == user %}
+        <a class="col-12 p-1 m-1 btn btn-outline-primary d-flex text-center" href=" {% url 'post_update' post.id %} ">
+            <img src="{% static 'seed/icons/edit_icon.svg' %} " alt="">
+            <p class="px-1 mx-1 my-1">Edit</p>
+        </a>
+        <a class="col-12 p-1 m-1 btn btn-outline-danger d-flex text-center" href=" {% url 'post_delete' post.id %} ">
+            <img src="{% static 'seed/icons/delete_icon.svg' %} " alt="">
+            <p class="px-1 mx-1 my-1">Delete</p>
+        </a>
+        {% endif %}
+    </div>
+
+</div>
+{% endblock %}

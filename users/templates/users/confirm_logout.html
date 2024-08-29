@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+Logout
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <form >
+            <small class="d-flex">
+                <p class="my-auto me-2">Are you sure you wish to logout?</p>
+                
+                <a href="{% url 'logout' %}" class="btn btn-outline-danger">Logout</a>
+            </small>
+            <a href="{% url 'seed_list' %}" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    </div>
+
+{% endblock %}

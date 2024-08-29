@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block head %}
+About This Project
+{% endblock %}
+
+
+{% block content %}
+<div class="about border rounded bg-white shadow-sm p-2">
+    <div class="head border-bottom d-flex flex-column my-2">
+        <a class="h4" href="https://github.com/frivolous-impulsor/projTree " target="_blank">#projTree</a>
+        <p>by Oliver&lt;ultrapilot95@gmail.com&gt;</p>
+    </div>
+    <p class="h6">
+        Special thanks to Ye for his fabulous masterpieces(Ye, Graduation, Late Registration, The Life of Pablo, Heartbreak&808 and many more) that support me writing this website as well as living. Much love.
+    </p>
+
+    <p class="h6">
+        The website is a django project that supports user login/out/register. Upon logged in, a user is entitled to
+        create/edit/delete abtrary number of seed profiles of theirs.
+        A seed profile is a basic introduction of a seed, including it's name, time to obtain(month of the year), growth
+        rate, picture, picture after grow up, general difficulty to plant, and maybe more. Each seed possesses numerous
+        steps to plant, including how to extract seed, process seed, plant seed, after plant measurements, watering
+        frequency and all based on user's understanding and preference.(working on currently - 2024.01.27)
+        A visitor, regardless of log status, is able to check the list of seed types based on their attributes like
+        obtain month, growth rate, difficulty to plant, and maybe more.(working on currently - 2024.01.27)
+
+
+    </p>
+    <p class="h6 my-3">Backend:
+        As the project grows, it's additional functionality weighs visibly heavier than it's initial prototype "post",
+        which is th
+        e skelliton I've followed from Corey Shafer's Django beginer course
+        at Youtube. And accordingly, it leans ever more towards my initial
+        incentive of learning django, which is to build a website that
+        utilize backend database to analytically deliver informtaion about planting techniques, for fruit seeds like
+        lemon, apple, and tree seeds like acorn and whatever that I haven't heard of. Surprisingly, with the robust
+        class views and models of django, I can easily build an interactive website that receives user input and store
+        them in database.</p>
+    <p class="h6">Front end
+        The website is styled using bootstrap5. Thanks to its convenience,
+        a couple keywords can make this website at least not aesthetically
+        repelling.
+        I'm considering between Vue or React for javascript framework.
+        Honestly, I don't even know javascript yet, and the website at
+        current state doesn't appear to need any javascript. So it's currently not equiped with any front-end framework
+        except bootstrap5.</p>
+</div>
+
+{% endblock %}
+
+
+
+{% block info %}
+{% if user.is_authenticated %}
+
+{% endif %}
+
+
+<a href="https://github.com/frivolous-impulsor/projTree" class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/about_icon.svg' %}" alt="alt">
+    <p class="d-none d-md-block my-auto">git</p>
+</a>
+{% endblock %}

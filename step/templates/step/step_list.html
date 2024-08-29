@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block href %}
+<a class="position-absolute start-0" href="{%url 'seed_detail' steps.0.seed.id %} "> <img src="{% static 'seed/icons/arrow_back_icon.svg' %}"></a>
+{% endblock %}
+
+{% block head %}
+Steps for {{steps.0.seed.seedName}}
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="row mx-auto">
+    {% for step in steps %}
+    <div class="row seed m-1 p-1 border rounded shadow mt-3">
+        <img class="col-lg-5 col-md-5 col rounded border" src="{{ step.img.url }}" alt="img of {{seed.seedName}}"
+            style="object-fit: cover;">
+        <div class="info col-lg-7 col-md-6 col">
+            <div class="h5 border-bottom">{{step.title}} </div>
+            <p class="h6"> {{step.content}} </p>
+        </div>
+        
+    </div>
+
+
+    {% if user == steps.0.seed.author %}
+    <div class="edit_buttons d-none">
+        <a class="float-start" href="{% url 'step_update' seed_id=step.seed.id pk=step.id %} ">Edit</a>
+        <a class="float-end" href="{% url 'step_delete' seed_id=step.seed.id pk=step.id %} ">Delete</a>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+    
+{% endblock %}
+
+
+
+{% block info %}
+{% if steps.0.seed.author == user %}
+
+<a href="{% url 'step_create' steps.0.seed.id %}  " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/add_icon.svg' %}" alt="alt">
+    <p class="d-none d-md-block my-auto">Steps</p>
+</a>
+{% endif %}
+{% endblock %}

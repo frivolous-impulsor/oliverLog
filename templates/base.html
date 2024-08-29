@@ -1,0 +1,250 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" style="height: 100%;">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Inria+Serif&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{% static 'seed/css/style.css' %}">
+  <title>treeProj</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <style>
+    .navBtn {
+      background-color: white;
+      color: #000;
+      box-sizing: border-box;
+      border: 2px solid transparent;
+    }
+    .navBtn:hover {
+      border: 2px solid #000;
+      color: #000;
+    }
+
+    .backBtn{
+      background-color: grey;
+    }
+
+    .seedCard:hover {
+      border: 2px solid transparent;
+    }
+
+    .seedCard:hover {
+      border: 2px solid black;
+      
+    }
+
+    body {
+      height: auto;
+      .navPart {
+        height: 120%;
+      }
+      .contentPart {
+        .seedCard {
+          .title {
+            color: #000;
+          }
+          .title:hover {
+            text-decoration: underline solid;
+
+          }
+          .author {
+            color: grey;
+            
+          }
+          .author:hover {
+            text-decoration: underline solid;
+          }
+        }
+      }
+    }
+  </style>
+
+</head>
+
+<body class="bg-light" style="height: 100%;">
+  <div class="container-fluid row mx-0 bg-light" style="font-family: DM Sans; font-weight:900;">
+
+    <div class="navPart col-lg-2 col-md-2 col-sm-2 d-none d-sm-block bg-light border-end">
+      <div class="d-flex flex-column sticky-top">
+        <div class="logo justify-content-center align-content-center mb-5">
+          <a class="text-body navbar-brand d-none d-md-block text-center" href="{% url 'home' %} "><strong>projTree</strong></a>
+        </div>
+        <div class="navs row g-2 justify-content-center mx-1">
+
+          <a href="{% url 'seed_list' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3" >
+            <img class="me-1" src="{% static 'seed/icons/seed_list_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">Seeds</p>
+          </a>
+
+          <!-- <a href="{% url 'posts' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
+            <img class="me-1" src="{% static 'seed/icons/posts_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">Posts</p>
+          </a> -->
+
+          {% if user.is_authenticated %}
+
+          <a href="{% url 'profile' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
+            <img class="me-1" src="{% static 'seed/icons/profile_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">Profile</p>
+          </a>
+
+          <a href="{% url 'confirm_logout' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
+            <img class="me-1" src="{% static 'seed/icons/logout_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">Logout</p>
+          </a>
+          
+          {% else %}
+
+          <a href="{% url 'login' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
+            <img class="me-1" src="{% static 'seed/icons/login_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">Login</p>
+          </a>
+
+          <a href="{% url 'register' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
+            <img class="me-1" src="{% static 'seed/icons/register_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">Register</p>
+          </a>
+          {% endif %}
+
+          <a href="{% url 'about' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3">
+            <img class="me-1" src="{% static 'seed/icons/about_icon.svg' %}" alt="alt">
+            <p class="d-none d-md-block my-auto">About</p>
+          </a>
+          
+        </div>
+      </div>
+    </div>  
+
+    <div class="contentPart col-lg-8 col-md-10 col-sm-10  bg-light" style="padding-top: 0%;">
+      <div class="heading border-bottom sticky-top text-center bg-light h4 py-2" >
+        {% block href %} {% endblock %}
+        
+        <p class="my-1"> {% block head %} {% endblock %} </p>
+      </div>
+      <div class="px-1">
+
+        {% if messages %}
+        <div class="message">
+          {% for message in messages %}
+          <div class="bg-success h4">
+            {{message}}
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+      </div>
+
+
+    </div>
+
+
+    <div class="infoPart col-lg-2 col-md-2 d-none d-lg-block border-start">
+      <div class="sticky-top rounded border mt-3 p-2">
+
+        {% if user.is_authenticated %}
+        <div class="text-center">
+          <p class="h6">What up {{user.username}}! </p>
+        </div>
+        {% endif %}
+
+        <div class="navs row justify-content-center m-1">
+          {% block info %}
+          {% endblock %}
+        </div>
+        
+      </div>
+    
+    </div>
+
+    <div class="d-sm-none bg-light" style="height: 4rem;">
+    </div>
+
+  </div>
+  <div class="bottomNavPart d-sm-none border bg-white position-fixed bottom-0" style="width: 100%;">
+    <div class="d-flex">
+      <ul class="navbar-nav d-flex flex-row mx-auto">
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'seed_list' %} ">
+            <img src="{% static 'seed/icons/seed_list_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'posts' %} ">
+            <img src="{% static 'seed/icons/posts_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+
+        {% if user.is_authenticated %}
+
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'profile' %} ">
+            <img src="{% static 'seed/icons/profile_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'logout' %} ">
+            <img src="{% static 'seed/icons/logout_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+    
+        {% else %}
+
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'register' %} ">
+            <img src="{% static 'seed/icons/register_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'login' %} ">
+            <img src="{% static 'seed/icons/login_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+        {% endif %}
+
+        <li class="nav-item btn btn-outline-primary my-1 mx-1">
+          <a class="nav-link active d-flex" aria-current="page" href="{% url 'about' %} ">
+            <img src="{% static 'seed/icons/about_icon.svg' %}" alt="alt">
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  </div>
+
+
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

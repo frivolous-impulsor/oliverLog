@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+Profile
+{% endblock %}
+
+{% block content %}
+    <div class="infoPart row my-3 container">
+        <div class=" col-4 ">
+            <img class="rounded img-thumbnail shadow-sm w-100" src="{{profile.image.url}} " alt="">
+        </div>
+        <div class="col-8 border rounded shadow-sm">
+            <p class="h2" >{{profile.user.username}}</p>
+            <p class="h5" >{{profile.user.email}}</p>
+        </div>
+    </div>
+
+    
+    
+{% endblock %}
+
+{% block info %}
+
+{% if user == profile.user %}
+
+<a href="{% url 'profile_update' %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/edit_icon.svg' %}" alt="alt">
+    <p class="d-none d-md-block my-auto">Edit</p>
+</a>
+
+{% endif %}
+
+<a href="{% url 'user_seeds' user %}" class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/seed_list_icon.svg' %} " alt="alt">
+    <p class="d-none d-md-block my-auto">Seeds</p>
+</a>
+
+<a href="{%url 'user_posts' user%}" class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/posts_icon.svg' %}  " alt="alt">
+    <p class="d-none d-md-block my-auto">Posts</p>
+</a>
+
+{% endblock %}

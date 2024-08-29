@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block head %}
+Logout
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <h1>You Logged Out (:P)</h1>
+
+        <form >
+            <small class="d-flex">
+                <p class="my-auto me-2">Wanna log back in?</p>
+                
+                <a href="{% url 'login' %}" class="btn btn-outline-primary">Log In</a>
+            </small>
+        </form>
+    </div>
+
+{% endblock %}

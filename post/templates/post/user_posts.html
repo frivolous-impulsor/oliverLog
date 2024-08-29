@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block href %}
+<a class="position-absolute start-0" href="{% url 'posts' %} "> <img src="{% static 'seed/icons/arrow_back_icon.svg' %}"></a>
+{% endblock %}
+
+{% block head %}
+Posts By {{view.kwargs.username}}
+{% endblock %}
+
+
+{% block content %}
+<div class="d-flex flex-column">
+    {% for post in posts %}
+    <div class="rounded border p-2 mb-2 shadow-sm">
+        <a href="{%url 'post_detail' post.id%}">{{ post.title }}</a>
+        <a class="text-muted" href="{%url 'user_posts' post.author.username%}">-{{ post.author }}</a>
+        <p class="border-top" >{{post.content|truncatechars:100}} </p>
+    </div>
+
+    
+    {% endfor %}
+
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block href %} 
+<a class="position-absolute start-0" href="{% url 'posts' %} "> <img src="{% static 'seed/icons/arrow_back_icon.svg' %}" alt="Last Page"></a>
+{% endblock %}
+
+{% block head %}
+All Posts Related to &quot;{{searched}}&quot;
+{% endblock %}
+
+{% block content %}
+<div class="search mb-1">
+    <form class="d-flex shadow-sm rounded p-2" method="POST" action="{% url 'post_search' %} "> {% csrf_token %}
+        <input class="form-control" type="search" placeholder="key words on post title or content" aria-label="Search" name="searched">
+        <button class="btn btn-outline-primary ms-2" type="submit">Search</button>
+    </form>
+</div>
+
+{% if searched %}
+
+<div class="d-flex flex-column">
+    {% for post in posts %}
+    <div class="rounded border p-2 mb-2 shadow-sm bg-white">
+        <a href="{%url 'post_detail' post.id%}">{{ post.title }}</a>
+        <a class="text-muted" href="{%url 'user_posts' post.author.username%}">-{{ post.author }}</a>
+        <p class="border-top" >{{post.content|truncatechars:100}} </p>
+    </div>
+
+    
+    {% endfor %}
+
+</div>
+
+{% else %}
+<p>Say something baby, don't left my heart blank ;(</p>
+{% endif %}
+{% endblock %}
+
+
+
+{% block info %}
+<a class="mt-4 col-12 p-1 m-1 btn btn-outline-primary d-flex text-center mx-auto" href=" {% url 'post_create' %} ">
+    <img src="{% static 'seed/icons/add_icon.svg' %} " alt="">
+    <p class="px-1 mx-1 my-1">Post</p>
+</a>
+{% endblock %}
+
+
+

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block href %}
+<a class="position-absolute start-0" href="{% url 'seed_list' %} "> <img
+        src="{% static 'seed/icons/arrow_back_icon.svg' %}" alt="Last Page"></a>
+{% endblock %}
+
+{% block head %}
+{{seed.seedName}}
+{% endblock %}
+
+{% block content %}
+
+<div class="row container p-3 mx-auto">
+    <div class="row seed m-1 p-1 rounded shadow bg-white">
+        <img class="border rounded col-lg-5 col-md-5 col" src="{{seed.seedImg.url}}" alt="img of {{seed.seedName}}"
+            style=" object-fit:cover;">
+        <div class="thought col-lg-7 col-md-6 col">
+            <p class="rounded border p-1 bg-light h5" style="width: fit-content;"> Info </p>
+            <p class="h6 border-bottom"> "{{seed.content}}" </p>
+            <p class="h6">Obtain time: {{seed.obtainTime}}</p>
+            {% if seed.edibleFruit %}
+            <p class="h6">Is edible :P</p>
+            {% else %}
+            <p class="h6">NOT edible XP</p>
+            {% endif %}
+            <p class="h6">Growth rate: {{seed.growthRate}} </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block info %}
+
+{% if seed.author == user %}
+<a href="{%url 'seed_update' seed.id %} " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/edit_icon.svg' %}" alt="alt">
+    <p class="d-none d-md-block my-auto">Edit</p>
+</a>
+
+<a href="{%url 'seed_delete' seed.id%}  " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/delete_icon.svg' %}" alt="alt">
+    <p class="d-none d-md-block my-auto">Delete</p>
+</a>
+
+{% endif %}
+<a href="{% url 'step_list' seed.id %}  " class="navBtn d-flex rounded-pill col-12 mb-2 shadow-sm py-3 bg-white" >
+    <img class="me-1" src="{% static 'seed/icons/steps_icon.svg' %}" alt="alt">
+    <p class="d-none d-md-block my-auto">Steps</p>
+</a>
+
+
+{% endblock %}

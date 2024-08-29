@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+{% block href %}
+<a class="position-absolute start-0" href="{% url 'seed_list' %} "> <img src="{% static 'seed/icons/arrow_back_icon.svg' %}"></a>
+{% endblock %}
+
+{% block head %}
+Delete Seed
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <form method="POST">
+            {%csrf_token%}
+            <div class="form-group">
+                <p class="h5" >Are you sure you wish to delete this seed?</p>
+                <button class="btn btn-outline-danger" type="submit">
+                    Delete
+                </button>
+            </div>
+            <div class="form-group mt-4">
+                <p>Maybe Not :p</p>
+                <a class="btn btn-outline-secondary" href="{% url 'seed_detail' object.id %}">Cancel</a>
+            </div>
+        </form>
+
+{% endblock %}
