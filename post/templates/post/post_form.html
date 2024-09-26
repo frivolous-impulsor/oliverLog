@@ -3,8 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block href %}
-<a class="position-absolute start-0" href="{% url 'posts' %} "> <img
-        src="{% static 'seed/icons/arrow_back_icon.svg' %}" alt="Last Page"></a>
+<a class="" href="{% url 'posts' %} "> <img src="{% static 'post/icons/arrow_back_simple_icon.svg' %}"></a>
 {% endblock %}
 
 {% block head %}
@@ -13,7 +12,7 @@ Post Form
 
 {% block content %}
 
-    <div>
+    <div class="border rounded shadow-sm p-4">
         <form method="POST">
             {%csrf_token%}
             <fieldset class="form-group">

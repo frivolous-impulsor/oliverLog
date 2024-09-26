@@ -23,6 +23,7 @@
   <title>treeProj</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <style>
+
     .navBtn {
       background-color: white;
       color: #000;
@@ -38,14 +39,7 @@
       background-color: grey;
     }
 
-    .seedCard:hover {
-      border: 2px solid transparent;
-    }
 
-    .seedCard:hover {
-      border: 2px solid black;
-      
-    }
 
     body {
       height: auto;
@@ -55,31 +49,18 @@
       .heading {
         background-image: url("{% static 'post/img/skyCloud.JPG' %}");
         background-size: cover;
-        .right {
-          a{
-            opacity: 0;
-            padding: 3rem;
-          }
-        }
-      }
-      .contentPart {
-        .seedCard {
-          .title {
-            color: #000;
-          }
-          .title:hover {
-            text-decoration: underline solid;
 
-          }
-          .author {
-            color: grey;
-            
-          }
-          .author:hover {
-            text-decoration: underline solid;
-          }
-        }
       }
+      .posts{
+        a{
+          text-decoration: none;
+          color: #000;
+          
+        }
+
+      }
+      
+      
     }
   </style>
 
@@ -88,18 +69,21 @@
 <body class="bg-light" style="height: 100%;">
 
   <div class="heading bg-light h4 text-center d-flex justify-content-around align-items-center " >
-    <div class="left ">
+    <div class="left mb-3">
       {% block href %} {% endblock %}
     </div>
     <div class="mid">
       <p class="mx-auto  py-4  fs-1 fw-bolder text-white" > OLIVER'S LOGS {% if user.is_authenticated %} <span>;-)</span> {%else%} {% endif%}  </p>
     </div>
-    <div class="right">
+    <div class="right ">
       {% if user.is_authenticated %}
-      <a href="{% url 'post_create' %}" ">Post</a>
+      <button type="button" class="btn-outline-primary">
+        <a href="{% url 'post_create' %}" >Post</a>
+
+      </button>
       {% else %}
 
-      <a href="{% url 'login' %}">Login</a>
+      <a href="{% url 'login' %}" class="btn-outline-info visually-hidden-focusable">Login</a>
       {% endif %}
 
     </div>

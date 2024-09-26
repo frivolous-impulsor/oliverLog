@@ -6,6 +6,9 @@ from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
+from django.conf import settings
+from django.utils.timezone import activate
+activate(settings.TIME_ZONE)
 
 
 # Create your views here.
@@ -58,7 +61,7 @@ class UserPostListView(ListView):
 def search_post(request):
     if request.method == 'POST':
         searched = request.POST['searched']
-        posts = Post.objects.filter(title__contains = searched) | Post.objects.filter(content__contains = searched)
+        posts = Post.objects.filter(title__contains = searched) | Post.objects.filter(content__contains = searched).order_by('-date_posted')
         return render(request, 'post/post_search.html', {'searched':searched, 'posts': posts})
     else:
         return render(request, 'post/post_search.html', {})

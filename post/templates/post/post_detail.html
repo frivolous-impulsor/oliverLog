@@ -4,7 +4,7 @@
 
 
 {% block href %}
-<a class="" href="{% url 'posts' %} "> <img src="{% static 'post/icons/arrow_back_icon.svg' %}"></a>
+<a class="" href="{% url 'posts' %} "> <img src="{% static 'post/icons/arrow_back_simple_icon.svg' %}"></a>
 {% endblock %}
 
 {% block head %}
@@ -14,20 +14,17 @@ Post
 
 {% block content %}
 
-    <div class="container">
-        <div class="border rounded shadow-sm p-4 bg-white">
-            <div class="head d-flex border-bottom">
-                <p class="h4">{{post.title}}</p>
-                <p class="ms-auto h5">
-                    <a href="">-{{post.author}}</a>
-                </p>
-            </div>
-            <div class="content">{{post.content}}</div>
+
+    <div class="border rounded shadow-sm p-4 bg-white">
+        <div class="head d-flex border-bottom">
+            <p class="h4">{{post.title}}</p>
+            <p class="ms-auto h5">
+                <p>-{{post.date_posted|date}}</p>
+            </p>
         </div>
-        
-       
-       
+        <div class="content">{{post.content}}</div>
     </div>
+
 
 
 {% endblock %}

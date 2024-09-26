@@ -10,18 +10,25 @@ Posts
 {% block content %}
 <div class="search mb-1">
     <form class="d-flex shadow-sm rounded p-2" method="POST" action="{% url 'post_search' %} "> {% csrf_token %}
-        <input class="form-control" type="search" placeholder="attribute" aria-label="Search" name="searched">
+        <input class="form-control" type="search" placeholder="" aria-label="Search" name="searched">
         <button class="btn btn-outline-primary ms-2" type="submit">Search</button>
     </form>
 </div>
 
-<div class="d-flex flex-column">
+<div class="flex-column posts">
     {% for post in posts %}
-    <div class="rounded border p-2 mb-2 shadow-sm bg-white">
-        <a href="{%url 'post_detail' post.id%}">{{ post.title }}</a>
-        <p>-{{ post.date_posted }}</p>
-        <p class="border-top" >{{post.content|truncatechars:100}} </p>
-    </div>
+    <a href="{%url 'post_detail' post.id%}">
+        <div class="rounded border p-2 mb-2 shadow-sm bg-white post">
+            <div class="d-flex">
+                <p class="me-auto h5">{{ post.title }}</p>
+                <p>-{{ post.date_posted|date }}</p>
+            </div>
+            
+            <p class="border-top pt-2" >{{post.content|truncatechars:150}} </p>
+        </div>
+        
+    </a>
+    
 
     
     {% endfor %}
