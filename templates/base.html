@@ -20,10 +20,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,600&family=Inria+Serif&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="{% static 'seed/css/style.css' %}">
-  <title>treeProj</title>
-  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <title>oliver's log</title>
   <style>
-
+    a{
+      text-decoration: none;
+    }
     .navBtn {
       background-color: white;
       color: #000;
@@ -76,16 +77,24 @@
       <p class="mx-auto  py-4  fs-1 fw-bolder text-white" > OLIVER'S LOGS {% if user.is_authenticated %} <span>;-)</span> {%else%} {% endif%}  </p>
     </div>
     <div class="right ">
-      {% if user.is_authenticated %}
-      <button type="button" class="btn-outline-primary">
-        <a href="{% url 'post_create' %}" >Post</a>
 
-      </button>
+      {% if user.is_authenticated %}
+      <a href="{% url 'post_create' %}" >
+        <button class="btn-outline-primary ms-2" type="submit">
+          Post
+        </button>
+      </a>
+      
+      
+
+      {% block buttons %}
+      {% endblock %}
+
       {% else %}
 
       <a href="{% url 'login' %}" class="btn-outline-info visually-hidden-focusable">Login</a>
       {% endif %}
-
+      
     </div>
     
 
@@ -135,12 +144,6 @@
         {% if user.is_authenticated %}
 
         <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'profile' %} ">
-            <img src="{% static 'post/icons/profile_icon.svg' %}" alt="alt">
-          </a>
-        </li>
-
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
           <a class="nav-link active d-flex" aria-current="page" href="{% url 'logout' %} ">
             <img src="{% static 'post/icons/logout_icon.svg' %}" alt="alt">
           </a>
@@ -160,12 +163,6 @@
           </a>
         </li>
         {% endif %}
-
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'about' %} ">
-            <img src="{% static 'post/icons/about_icon.svg' %}" alt="alt">
-          </a>
-        </li>
 
       </ul>
     </div>

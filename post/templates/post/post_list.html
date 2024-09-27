@@ -1,17 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-
-{% block head %}
-Posts
-{% endblock %}
-
-
 {% block content %}
 <div class="search mb-1">
     <form class="d-flex shadow-sm rounded p-2" method="POST" action="{% url 'post_search' %} "> {% csrf_token %}
         <input class="form-control" type="search" placeholder="" aria-label="Search" name="searched">
-        <button class="btn btn-outline-primary ms-2" type="submit">Search</button>
+        <button class="btn-outline-primary ms-2" type="submit">Search</button>
     </form>
 </div>
 
@@ -28,23 +22,7 @@ Posts
         </div>
         
     </a>
-    
-
-    
     {% endfor %}
 
 </div>
-{% endblock %}
-
-
-
-{% block info %}
-
-
-
-<a class="mt-4 col-12 p-1 m-1 btn btn-outline-primary d-flex text-center mx-auto" href=" {% url 'post_create' %} ">
-    <img src="{% static 'seed/icons/add_icon.svg' %} " alt="">
-    <p class="px-1 mx-1 my-1">Post</p>
-</a>
-
 {% endblock %}

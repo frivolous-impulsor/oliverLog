@@ -7,10 +7,29 @@
 <a class="" href="{% url 'posts' %} "> <img src="{% static 'post/icons/arrow_back_simple_icon.svg' %}"></a>
 {% endblock %}
 
-{% block head %}
-Post
-{% endblock %}
 
+
+{% block buttons %}
+{% if post.author == user %}
+    <a href="{% url 'post_update' post.id %}" >
+        <button class="btn-outline-primary ms-2" type="submit">
+        Edit
+        </button>
+    </a>
+
+    <a href="{% url 'post_delete' post.id %}" >
+        <button class="btn-outline-primary ms-2" type="submit">
+        Delete
+        </button>
+    </a>
+
+
+
+
+{% else %}
+
+{% endif %}
+{% endblock %}
 
 {% block content %}
 

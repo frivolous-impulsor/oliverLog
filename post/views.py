@@ -43,9 +43,6 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = reverse_lazy('posts')
-    def form_valid(self, form):
-        form.instance.author = self.request.user
-        return super().form_valid(form)
     def test_func(self) -> bool | None: #ensure current user only edits their posts
         post = self.get_object()
         return post.author == self.request.user

@@ -19,18 +19,22 @@ Post Form
                 {{form|crispy}}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-primary" type="submit">
+                <button class="btn-outline-primary" type="submit">
                     Post
                 </button>
+                
             </div>
         </form>
+        <div class="d-flex">
+            <p>Not now?</p>
+            <a href="{% url 'posts'%}" class="">
+                <button class="btn-outline-secondary ms-2">
+                  Cancel
+                </button>
+            </a>
+        </div>
+        
 
-        <form >
-            <small>
-                Changed ur mind?
-                <a href="{%url 'posts'%}" class="btn btn-outline-secondary">Cancel</a>
-            </small>
-        </form>
     </div>
 
 {% endblock %}
