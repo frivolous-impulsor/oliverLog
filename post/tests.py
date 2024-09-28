@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth import get_user_model
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse
 from .models import Post
 
 # Create your tests here.

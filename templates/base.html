@@ -76,11 +76,11 @@
     <div class="mid">
       <p class="mx-auto  py-4  fs-1 fw-bolder text-white" > OLIVER'S LOGS {% if user.is_authenticated %} <span>;-)</span> {%else%} {% endif%}  </p>
     </div>
-    <div class="right ">
+    <div class="right d-md-flex">
 
       {% if user.is_authenticated %}
       <a href="{% url 'post_create' %}" >
-        <button class="btn-outline-primary ms-2" type="submit">
+        <button class="btn-outline-primary m-2 d-block">
           Post
         </button>
       </a>
@@ -131,46 +131,6 @@
     </div>
 
   </div>
-  <div class="bottomNavPart d-sm-none border bg-white position-fixed bottom-0" style="width: 100%;">
-    <div class="d-flex">
-      <ul class="navbar-nav d-flex flex-row mx-auto">
-
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'posts' %} ">
-            <img src="{% static 'post/icons/posts_icon.svg' %}" alt="alt">
-          </a>
-        </li>
-
-        {% if user.is_authenticated %}
-
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'logout' %} ">
-            <img src="{% static 'post/icons/logout_icon.svg' %}" alt="alt">
-          </a>
-        </li>
-    
-        {% else %}
-
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'register' %} ">
-            <img src="{% static 'post/icons/register_icon.svg' %}" alt="alt">
-          </a>
-        </li>
-
-        <li class="nav-item btn btn-outline-primary my-1 mx-1">
-          <a class="nav-link active d-flex" aria-current="page" href="{% url 'login' %} ">
-            <img src="{% static 'post/icons/login_icon.svg' %}" alt="alt">
-          </a>
-        </li>
-        {% endif %}
-
-      </ul>
-    </div>
-  </div>
-  </div>
-
-
-
 
 
 

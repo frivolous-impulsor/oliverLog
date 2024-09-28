@@ -1,9 +1,5 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from post import views as post_views
-from django.views.generic import TemplateView
-from django.conf import settings
-from django.conf.urls.static import static
 
 urlpatterns = [
     path('', post_views.PostListView.as_view(), name='posts'),

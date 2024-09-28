@@ -11,17 +11,17 @@
 
 {% block buttons %}
 {% if post.author == user %}
-    <a href="{% url 'post_update' post.id %}" >
-        <button class="btn-outline-success ms-2" type="submit">
-        Edit
-        </button>
-    </a>
+<a href="{% url 'post_update' post.id %}" >
+    <button class="btn-outline-success m-2 d-block">
+    Edit
+    </button>
+</a>
 
-    <a href="{% url 'post_delete' post.id %}" >
-        <button class="btn-outline-danger ms-2" type="submit">
-        Delete
-        </button>
-    </a>
+<a href="{% url 'post_delete' post.id %}" >
+    <button class="btn-outline-danger m-2 d-block">
+    Delete
+    </button>
+</a>
 
 
 
